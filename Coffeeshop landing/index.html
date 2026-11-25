@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fincan — кофейня в Ичери-шехер, Баку</title>
+  <meta name="description" content="Уютная кофейня Fincan во Внутреннем городе Баку. Кофе дня, домашняя выпечка и тихий двор в двух шагах от Девичьей башни.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,520;9..144,650&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #2a1812;
+      --ink-soft: #5c463c;
+      --paper: #f6efe6;
+      --paper-2: #fffaf4;
+      --line: #e4d5c6;
+      --clay: #b5522a;
+      --clay-deep: #8d3d1d;
+      --gold: #a68456;
+      --shadow: 0 18px 40px rgba(42, 24, 18, 0.08);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(1200px 500px at 100% -10%, #f3d7c4 0%, transparent 55%),
+        radial-gradient(900px 420px at -10% 20%, #efe2cf 0%, transparent 50%),
+        var(--paper);
+      font-family: Manrope, "Segoe UI", sans-serif;
+      line-height: 1.55;
+    }
+
+    a { color: inherit; }
+    img { max-width: 100%; display: block; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+
+    .wrap {
+      width: min(1080px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(14px);
+      background: rgba(246, 239, 230, 0.86);
+      border-bottom: 1px solid rgba(228, 213, 198, 0.8);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 72px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--ink);
+      color: #f6efe6;
+      display: grid;
+      place-items: center;
+      flex: none;
+    }
+
+    .brand-name {
+      font-family: Fraunces, Georgia, serif;
+      font-size: 1.35rem;
+      letter-spacing: -0.03em;
+    }
+
+    .brand small {
+      display: block;
+      font-family: Manrope, sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a:hover { color: var(--clay-deep); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: 0;
+      cursor: pointer;
+      text-decoration: none;
+      border-radius: 999px;
+      padding: 12px 18px;
+      font: inherit;
+      font-weight: 700;
+      background: var(--clay);
+      color: #fffaf4;
+      transition: transform 0.15s ease, background 0.15s ease;
+    }
+
+    .btn:hover { background: var(--clay-deep); transform: translateY(-1px); }
+    .btn:focus-visible, .fab:focus-visible, .panel a:focus-visible, .nav-links a:focus-visible {
+      outline: 3px solid #e7b08a;
+      outline-offset: 3px;
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--ink);
+      border: 1px solid var(--line);
+    }
+
+    .btn-ghost:hover { background: #fff; color: var(--ink); }
+
+    .hero {
+      padding: 64px 0 36px;
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr;
+      gap: 36px;
+      align-items: end;
+    }
+
+    .eyebrow {
+      margin: 0 0 14px;
+      color: var(--clay-deep);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+    }
+
+    h1 {
+      margin: 0;
+      font-family: Fraunces, Georgia, serif;
+      font-weight: 650;
+      font-size: clamp(2.5rem, 6vw, 4.8rem);
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+    }
+
+    .lede {
+      max-width: 38rem;
+      margin: 22px 0 0;
+      font-size: 1.12rem;
+      color: var(--ink-soft);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .facts {
+      display: grid;
+      gap: 12px;
+    }
+
+    .fact {
+      background: var(--paper-2);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 16px 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .fact b {
+      display: block;
+      font-family: Fraunces, Georgia, serif;
+      font-size: 1.35rem;
+      font-weight: 650;
+    }
+
+    .fact span { color: var(--ink-soft); font-size: 0.92rem; }
+
+    section { padding: 28px 0 10px; }
+
+    h2 {
+      margin: 0 0 8px;
+      font-family: Fraunces, Georgia, serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+    }
+
+    .section-head p {
+      margin: 0 0 22px;
+      color: var(--ink-soft);
+      max-width: 36rem;
+    }
+
+    .menu {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--paper-2);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 22px 20px 10px;
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 1.05rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .item {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 0;
+      border-top: 1px dashed var(--line);
+    }
+
+    .item strong { font-weight: 650; }
+    .item small {
+      display: block;
+      color: var(--ink-soft);
+      font-weight: 500;
+    }
+
+    .price {
+      font-variant-numeric: tabular-nums;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .about {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .story, .note {
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+    }
+
+    .story {
+      background: var(--ink);
+      color: #f8f1e8;
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 320px;
+    }
+
+    .story p { margin: 0; font-size: 1.05rem; color: #eadfD2; }
+    .story blockquote {
+      margin: 24px 0 0;
+      font-family: Fraunces, Georgia, serif;
+      font-size: clamp(1.6rem, 3vw, 2.15rem);
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+    }
+
+    .note {
+      background: var(--paper-2);
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .note p { margin: 0 0 14px; color: var(--ink-soft); }
+    .note p:last-child { margin-bottom: 0; }
+
+    .visit {
+      margin: 28px 0 80px;
+      background: #fffaf4;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 28px;
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr;
+      gap: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .visit h2 { margin-bottom: 10px; }
+    .meta { margin: 0; color: var(--ink-soft); }
+    .meta + .meta { margin-top: 6px; }
+
+    .fab {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 30;
+      border: 0;
+      cursor: pointer;
+      border-radius: 999px;
+      padding: 14px 18px;
+      background: var(--ink);
+      color: #fffaf4;
+      font: inherit;
+      font-weight: 700;
+      box-shadow: 0 12px 30px rgba(42, 24, 18, 0.28);
+    }
+
+    .fab:hover { background: #1a0e0a; }
+    .fab-icon { display: none; }
+    .fab-label { line-height: 1; }
+
+    .panel {
+      position: fixed;
+      right: 18px;
+      bottom: 76px;
+      z-index: 30;
+      width: min(280px, calc(100% - 36px));
+      background: #fffaf4;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 14px;
+      box-shadow: 0 18px 50px rgba(42, 24, 18, 0.18);
+      display: none;
+    }
+
+    .panel.open { display: grid; gap: 8px; }
+    .panel p { margin: 4px 6px 8px; color: var(--ink-soft); font-size: 0.92rem; }
+    .panel a { width: 100%; }
+
+    footer {
+      padding: 10px 0 36px;
+      color: var(--ink-soft);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 860px) {
+      .nav-links a:not(.btn) { display: none; }
+      .hero, .menu, .about, .visit { grid-template-columns: 1fr; }
+      .hero { padding-top: 36px; }
+      .story { min-height: 0; }
+      body { padding-bottom: 84px; }
+      .fab, .panel { left: 16px; right: auto; }
+      .fab {
+        width: 56px;
+        height: 56px;
+        padding: 0;
+      }
+      .fab-label {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+      .fab-icon { display: block; }
+      .fab .icon-close { display: none; }
+      .fab.is-open .icon-phone { display: none; }
+      .fab.is-open .icon-close { display: block; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="#top">
+        <span class="mark" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M6 8h9a4 4 0 0 1 0 8H8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M7 19h8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M16 10h1.5a2.5 2.5 0 0 1 0 5H16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span>
+          <span class="brand-name">Fincan</span>
+          <small>Баку · Ичери-шехер</small>
+        </span>
+      </a>
+      <nav class="nav-links" aria-label="Разделы">
+        <a href="#menu">Меню</a>
+        <a href="#about">О нас</a>
+        <a href="#visit">Как найти</a>
+        <a class="btn" href="tel:+994502124418">Позвонить</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <div class="wrap hero">
+      <div>
+        <p class="eyebrow">Уютный двор у Девичьей башни</p>
+        <h1>Самая тихая чашка в самом старом Баку.</h1>
+        <p class="lede">Fincan — маленькая кофейня на двенадцать мест. Обжарка утра, тёплая пахлава и двор, где город на минуту замолкает.</p>
+        <div class="hero-actions">
+          <a class="btn" href="#menu">Смотреть меню</a>
+          <a class="btn btn-ghost" href="#about">О кофейне</a>
+        </div>
+      </div>
+      <div class="facts">
+        <div class="fact"><b>08:00–22:00</b><span>каждый день, без выходных</span></div>
+        <div class="fact"><b>от 3.50 ман.</b><span>эспрессо и фильтр дня</span></div>
+        <div class="fact"><b>4 минуты</b><span>пешком от станции «Ичеришехер»</span></div>
+      </div>
+    </div>
+
+    <section id="menu" class="wrap">
+      <div class="section-head">
+        <h2>Меню</h2>
+        <p>Цены в азербайджанских манатах. Фильтр меняем каждый день — спросите, что в воронке сегодня.</p>
+      </div>
+      <div class="menu">
+        <article class="card">
+          <h3>Кофе</h3>
+          <div class="item"><div><strong>Эспрессо</strong><small>двойной, если попросите</small></div><span class="price">3.50 ман.</span></div>
+          <div class="item"><div><strong>Американо</strong><small>короткий или длинный</small></div><span class="price">4.00 ман.</span></div>
+          <div class="item"><div><strong>Капучино</strong><small>на молоке или овсяном</small></div><span class="price">5.00 ман.</span></div>
+          <div class="item"><div><strong>Латте</strong><small>мягкий, без лишней пены</small></div><span class="price">5.50 ман.</span></div>
+          <div class="item"><div><strong>Фильтр дня</strong><small>250 мл, одна обжарка</small></div><span class="price">4.50 ман.</span></div>
+          <div class="item"><div><strong>Кофе по-азербайджански</strong><small>в джезве, с кардамоном</small></div><span class="price">4.00 ман.</span></div>
+        </article>
+        <article class="card">
+          <h3>Не кофе</h3>
+          <div class="item"><div><strong>Какао</strong><small>на топлёном молоке</small></div><span class="price">5.00 ман.</span></div>
+          <div class="item"><div><strong>Чай из самовара</strong><small>чёрный, армуду в подарок</small></div><span class="price">3.00 ман.</span></div>
+          <div class="item"><div><strong>Апельсиновый фреш</strong><small>выжимаем при вас</small></div><span class="price">6.00 ман.</span></div>
+          <div class="item"><div><strong>Лимонад тархун</strong><small>домашний, со льдом</small></div><span class="price">4.50 ман.</span></div>
+          <div class="item"><div><strong>Айран</strong><small>холодный, несладкий</small></div><span class="price">2.50 ман.</span></div>
+        </article>
+        <article class="card">
+          <h3>К столу</h3>
+          <div class="item"><div><strong>Круассан</strong><small>масло и соль, с утра</small></div><span class="price">3.50 ман.</span></div>
+          <div class="item"><div><strong>Булочка с корицей</strong><small>ещё тёплая до полудня</small></div><span class="price">4.00 ман.</span></div>
+          <div class="item"><div><strong>Сырники</strong><small>сметана и мёд</small></div><span class="price">8.00 ман.</span></div>
+          <div class="item"><div><strong>Чизкейк</strong><small>ваниль, без коржа-печенья</small></div><span class="price">7.00 ман.</span></div>
+          <div class="item"><div><strong>Пахлава</strong><small>шекинская, две штуки</small></div><span class="price">6.00 ман.</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="about" class="wrap">
+      <div class="section-head">
+        <h2>О нас</h2>
+        <p>Мы не сеть и не «кофе с собой на бегу». Двенадцать стульев, один двор и люди, которые помнят ваш обычный заказ.</p>
+      </div>
+      <div class="about">
+        <div class="story">
+          <p>С 2019 года на Кичик Гала.</p>
+          <blockquote>Город за стеной шумит. Здесь слышно, как остывает чашка.</blockquote>
+        </div>
+        <div class="note">
+          <p>Fincan открыли двое друзей, которые устали пить кофе стоя. Помещение — бывшая мастерская медника: низкие своды, каменный пол и инжир во дворе.</p>
+          <p>Зерно берём у бакинской обжарки на Насими и мелем под чашку, а не в большой бункер. Молоко — местное, альтернатива — овсяное. Выпечку привозит пекарня с соседней улицы, пахлаву — семья из Шеки.</p>
+          <p>Можно работать с ноутбуком до обеда. После четырёх двор отдаём разговорам: розеток меньше, света теплее, музыка тише.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="visit" class="wrap visit">
+      <div>
+        <h2>Заходите</h2>
+        <p class="meta"><strong>Адрес:</strong> ул. Кичик Гала, 14, Ичери-шехер, Баку</p>
+        <p class="meta"><strong>Часы:</strong> ежедневно с 08:00 до 22:00</p>
+        <p class="meta"><strong>Телефон:</strong> <a href="tel:+994502124418">+994 50 212 44 18</a></p>
+      </div>
+      <div>
+        <p class="meta">Стол у окна лучше бронировать в пятницу вечером — напишите, и мы оставим два места.</p>
+        <div class="hero-actions">
+          <a class="btn" href="https://wa.me/994502124418?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%85%D0%BE%D1%87%D1%83%20%D1%81%D1%82%D0%BE%D0%BB%D0%B8%D0%BA%20%D0%B2%20Fincan" target="_blank" rel="noopener">Написать в WhatsApp</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">Fincan · кофейня в Баку · цены на стойке могут чуть отличаться в праздники</div>
+  </footer>
+
+  <div class="panel" id="contact-panel" role="dialog" aria-label="Быстрая связь">
+    <p>Ответим в рабочее время, обычно за пару минут.</p>
+    <a class="btn" href="tel:+994502124418">Позвонить</a>
+    <a class="btn btn-ghost" href="https://wa.me/994502124418" target="_blank" rel="noopener">WhatsApp</a>
+  </div>
+  <button class="fab" id="contact-btn" type="button" aria-expanded="false" aria-controls="contact-panel">
+    <svg class="fab-icon icon-phone" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M8 4.5h2.2l1.1 3.2-1.6 1a12 12 0 0 0 5.6 5.6l1-1.6 3.2 1.1V16a2 2 0 0 1-2.2 2A14.5 14.5 0 0 1 6 7.7 2 2 0 0 1 8 4.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="fab-icon icon-close" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <span class="fab-label">Связаться</span>
+  </button>
+
+  <script>
+    const btn = document.getElementById("contact-btn");
+    const panel = document.getElementById("contact-panel");
+    const label = btn.querySelector(".fab-label");
+    btn.addEventListener("click", () => {
+      const open = panel.classList.toggle("open");
+      btn.classList.toggle("is-open", open);
+      btn.setAttribute("aria-expanded", open ? "true" : "false");
+      label.textContent = open ? "Закрыть" : "Связаться";
+    });
+  </script>
+</body>
+</html>
